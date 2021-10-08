@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useRef } from "react"
-import Note from "./components/Note"
-import Notification from "./components/Notification"
-import LoginForm from "./components/LoginForm"
-import NoteForm from "./components/NoteForm"
-import Togglable from "./components/Togglable"
-import Footer from "./components/Footer"
-import noteService from "./services/notes"
-import loginService from "./services/login"
+import React, { useState, useEffect, useRef } from 'react'
+import Note from './components/Note'
+import Notification from './components/Notification'
+import LoginForm from './components/LoginForm'
+import NoteForm from './components/NoteForm'
+import Togglable from './components/Togglable'
+import Footer from './components/Footer'
+import noteService from './services/notes'
+import loginService from './services/login'
 
 const App = () => {
   const [notes, setNotes] = useState([])
@@ -22,7 +22,7 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    const loggedUserJSON = window.localStorage.getItem("loggedNoteappUser")
+    const loggedUserJSON = window.localStorage.getItem('loggedNoteappUser')
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
@@ -46,7 +46,7 @@ const App = () => {
       .then((returnedNote) => {
         setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)))
       })
-      .catch((error) => {
+      .catch(() => {
         setErrorMessage(
           `Note '${note.content}' was already removed from server`
         )
@@ -63,11 +63,11 @@ const App = () => {
       const user = await loginService.login(userObject)
 
       noteService.setToken(user.token)
-      window.localStorage.setItem("loggedNoteappUser", JSON.stringify(user))
+      window.localStorage.setItem('loggedNoteappUser', JSON.stringify(user))
 
       setUser(user)
     } catch (exception) {
-      setErrorMessage("wrong credentials")
+      setErrorMessage('wrong credentials')
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
@@ -87,7 +87,7 @@ const App = () => {
   )
 
   const handleLogout = () => {
-    window.localStorage.removeItem("loggedNoteappUser")
+    window.localStorage.removeItem('loggedNoteappUser')
     setUser(null)
   }
 
@@ -109,7 +109,7 @@ const App = () => {
 
       <div>
         <button onClick={() => setShowAll(!showAll)}>
-          show {showAll ? "important" : "all"}
+          show {showAll ? 'important' : 'all'}
         </button>
       </div>
       <ul>

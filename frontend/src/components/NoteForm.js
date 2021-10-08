@@ -1,7 +1,7 @@
-import React, { useState } from "react"
+import React, { useState } from 'react'
 
 const NoteForm = ({ createNote }) => {
-  const [newNote, setNewNote] = useState("")
+  const [newNote, setNewNote] = useState('')
 
   const handleChange = (event) => {
     setNewNote(event.target.value)
@@ -14,7 +14,7 @@ const NoteForm = ({ createNote }) => {
       important: Math.random() > 0.5,
     })
 
-    setNewNote("")
+    setNewNote('')
   }
 
   return (
